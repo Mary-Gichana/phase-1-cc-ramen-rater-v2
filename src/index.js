@@ -1,5 +1,3 @@
-import { error } from "happy-dom/lib/PropertySymbol.js";
-
 // index.js
 
 // Callbacks
@@ -10,15 +8,14 @@ const handleClick = (ramen) => {
   const detailRestaurant = document.querySelector(
     "#ramen-detail > .restaurant"
   );
-  const detailsRating = document.getElementById("rating-display");
-  const detailsComment = document.getElementById("comment-display");
+  const detailRating = document.getElementById("rating-display");
+  const detailComment = document.getElementById("comment-display");
 
   detailImg.src = ramen.image;
-  detailImg.alt = ramen.name;
   detailName.textContent = ramen.name;
   detailRestaurant.textContent = ramen.restaurant;
-  detailsRating.textContent = ramen.rating;
-  detailsComment.textContent = ramen.comment;
+  detailRating.textContent = ramen.rating;
+  detailComment.textContent = ramen.comment;
 };
 
 const addSubmitListener = () => {
@@ -46,7 +43,6 @@ const addSubmitListener = () => {
     const ramenMenuDiv = document.getElementById("ramen-menu");
     const img = document.createElement("img");
     img.src = ramen.image;
-    img.alt = ramen.name;
 
     img.addEventListener("click", () => {
       handleClick(ramen);
@@ -71,6 +67,10 @@ const displayRamens = () => {
       data.forEach((ramen) => {
         const img = document.createElement("img");
         img.src = ramen.image;
+
+        img.addEventListener("click", () => {
+          handleClick(ramen);
+        });
 
         ramenMenu.appendChild(img);
       });
